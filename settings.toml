@@ -1,0 +1,68 @@
+# =====================================================================
+#  Marktplaats Sniper settings
+#  Edit this file with Notepad. Lines starting with # are comments.
+#  Text goes between "quotes", numbers don't. Save, then restart the sniper.
+# =====================================================================
+
+[telegram]
+# Run setup_telegram.bat to fill these in automatically.
+# Left empty, the sniper still works but only shows new ads in its window.
+bot_token = ""
+chat_id = ""
+
+[general]
+# Your postcode (like "1234AB"). Used for the distance filter.
+postcode = ""
+
+# Seconds between checks. Don't go below 30, or Marktplaats may block you.
+poll_interval_seconds = 60
+
+# Send the first photo of the ad along with the Telegram message.
+send_photos = true
+
+
+# ---------------------------------------------------------------------
+#  SEARCHES
+#  Every [[search]] block is one thing you're hunting for.
+#  Copy a whole block (from [[search]] down) to add another search.
+#  Each search only alerts on ads posted AFTER you add it.
+# ---------------------------------------------------------------------
+
+[[search]]
+name = "PlayStation 5"            # shows up in the alert, pick anything
+query = "playstation 5"           # what you'd type in the Marktplaats search bar
+min_price = 100                   # in euros; 0 = no minimum (drops €1 "bieden" bait)
+max_price = 350                   # in euros; 0 = no maximum
+distance_km = 30                  # 0 = whole country
+
+# true = every word of the query must be in the ad's TITLE. Cuts out lots of junk
+# (games, controllers, repair shops that just mention "playstation 5").
+query_in_title = true
+
+# Skip ads that contain any of these words (title or description).
+exclude_words = ["defect", "kapot", "voor onderdelen", "niet werkend", "doet het niet", "drift", "reparatie", "portal", "alleen controller", "hoes"]
+
+# Only alert if the ad contains at least ONE of these words. [] = no requirement.
+must_include = []
+
+# Words that get a ⭐ in the alert when they appear (nothing is skipped for these).
+highlight_words = ["zo goed als nieuw", "nieuw in doos", "met bon", "garantie"]
+
+skip_wanted_ads = true            # skip "gezocht" / "gevraagd" ads (people looking to BUY)
+skip_shops = false                # skip ads from businesses / webshops
+
+
+# Example of a second search. Remove the # in front of each line to turn it on.
+#
+# [[search]]
+# name = "Fiets"
+# query = "racefiets"
+# min_price = 50
+# max_price = 400
+# distance_km = 15
+# query_in_title = false
+# exclude_words = ["defect", "kapot", "gestolen"]
+# must_include = []
+# highlight_words = ["shimano"]
+# skip_wanted_ads = true
+# skip_shops = true
